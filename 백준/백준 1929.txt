@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int startNum = Integer.parseInt(st.nextToken());
+		int endNum = Integer.parseInt(st.nextToken());
+		boolean[] primeNum = new boolean[endNum + 1];
+		for (int i = 2; i <= endNum; i++) {
+			primeNum[i] = true;
+		}
+		for (int i = 2; i * i <= endNum; i++) {
+			if (primeNum[i]) {
+				for (int j = i * i; j <= endNum; j += i) {
+					primeNum[j] = false;
+				}
+			}
+		}
+		for (int i = startNum; i <= endNum; i++) {
+			if (primeNum[i]) {
+				System.out.println(i);
+			}
+		}
+	}
+}
