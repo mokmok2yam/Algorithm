@@ -1,0 +1,20 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		HashSet<String> set = new HashSet<>();
+		String str = br.readLine();
+		int N = str.length();
+		for (int i = 0; i < N; i++) {
+			for (int j = i + 1; j <= N; j++) {
+				String newStr = str.substring(i, j);
+				set.add(newStr);
+			}
+		}
+		System.out.println(set.size());
+	}
+}
