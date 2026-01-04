@@ -1,0 +1,36 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int tc = Integer.parseInt(br.readLine()); // 테스트케이스 입력
+		for (int t = 0; t < tc; t++) {
+			int N = Integer.parseInt(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int oddCnt = 0; // 홀수 갯수
+			int evenCnt = 0;// 짝수 갯수
+			int arr[] = new int[N];
+
+			for (int i = 0; i < N; i++) {
+				arr[i] = Integer.parseInt(st.nextToken());// 카드 입력받기
+				if (arr[i] % 2 == 0)
+					evenCnt++;
+				else
+					oddCnt++;
+			}
+			int maxCnt = Math.max(oddCnt, evenCnt); //더 많은 카드더미 찾기
+			
+//			1.홀수 카드수와, 짝수 카드수는달라야한다.
+//			2.많은 카드더미의 수를 가진 홀수or짝수 카드 더미는 홀수의 갯수여야한다.
+//			이경우에는 채완이가 이길수있다.
+			if ((oddCnt != evenCnt) && maxCnt % 2 != 0) {
+				System.out.println("amsminn");
+			} else {
+				System.out.println("heeda0528");
+			}
+		}
+	}
+}
