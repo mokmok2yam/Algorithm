@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());  //배열 크시
+		int arr[] = new int[N]; //입력 받는 배열
+		int ans[] = new int[N]; // 정답 배열
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		for (int i = 0; i < N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		Stack<Integer> stack = new Stack<>();
+		stack.push(0);//스택의 첫번째 값 미리 넣어주기
+		for (int i = 1; i < N; i++) {
+			while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) //스택이 비어있지 않고,stack의 top보다 크기가 큰경우
+				{
+				ans[stack.pop()] = arr[i]; //오큰수로 넣어준뒤, pop실행
+			}
+			stack.push(i); //push진행
+		}
+		while (!stack.isEmpty()) {
+			ans[stack.pop()] = -1; //오큰수가 없는 수는 -1로 기록
+		}
+		StringBuilder sb = new StringBuilder();
+		for (int num : ans) {
+			sb.append(num).append(" ");
+		}
+		System.out.println(sb);
+
+	}
+}
