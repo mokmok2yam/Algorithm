@@ -1,0 +1,24 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PriorityQueue<Integer> q = new PriorityQueue<>();
+		int N = Integer.parseInt(br.readLine());
+		for (int i = 0; i < N; i++) {
+			q.add(Integer.parseInt(br.readLine()));
+		}
+		int sum = 0;
+		int num1 = 0;
+		int num2 = 0;
+		while (q.size() != 1) {
+			num1 = q.remove();
+			num2 = q.remove();
+			sum += num1 + num2;
+			q.add(num1 + num2);
+		}
+		System.out.println(sum);
+	}
+}
