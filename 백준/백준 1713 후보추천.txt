@@ -1,0 +1,61 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
+
+public class Main {
+	static class Student implements Comparable<Student> {
+		int id;
+		int cnt;
+		int squence;
+
+		public Student(int id, int cnt, int squence) {
+			this.id = id;
+			this.cnt = cnt;
+			this.squence = squence;
+		}
+
+		@Override
+		public int compareTo(Student other) {
+			if (this.cnt == other.cnt) {
+				return this.squence - other.squence;
+			}
+			return this.cnt - other.cnt;
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		int M = Integer.parseInt(br.readLine());
+		ArrayList<Student> li = new ArrayList<>();
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < M; i++) {
+			int studentId = Integer.parseInt(st.nextToken());
+			boolean isPost = false;
+			for (Student s : li) {
+				if (s.id == studentId) {
+					s.cnt++;
+					isPost = true;
+					break;
+				}
+			}
+			if (!isPost) {
+				if (li.size() >= N) {
+					Collections.sort(li);
+					li.remove(0);
+				}
+				li.add(new Student(studentId, 1, i));
+			}
+		}
+		Collections.sort(li, (s1, s2) -> s1.id - s2.id);
+		StringBuilder sb = new StringBuilder();
+		for (Student s : li) {
+			sb.append(s.id).append(" ");
+		}
+		System.out.println(sb.toString());
+
+	}
+}
