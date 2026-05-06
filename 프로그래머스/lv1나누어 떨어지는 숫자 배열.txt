@@ -1,0 +1,12 @@
+//나누어 떨어지는 숫자 배열
+import java.util.*;
+class Solution {
+    public int[] solution(int[] arr, int divisor) {
+        int rst [] = Arrays.stream(arr)
+            .filter(num->num%divisor==0)
+            .sorted()
+            .toArray();
+        return rst.length>0 ? rst : new int[]{-1};
+            
+    }
+}
