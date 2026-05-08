@@ -1,0 +1,28 @@
+//lv1 제일 작은 수 제거하기 
+import java.util.*;
+class Solution {
+    public int[] solution(int[] arr) {
+        int n = arr.length;
+        if(n<=1){
+            return new int[]{-1};
+        }
+        List<Integer> li = new ArrayList<>();
+        for (int x : arr) {
+            li.add(x);
+        }
+        int min = Integer.MAX_VALUE;
+        int index =0;
+        for(int i=0;i<n;i++){
+            if(arr[i]<min){
+                min = arr[i];
+                index = i;
+            }
+        }
+        li.remove(index);
+        int [] ans = new int[li.size()];
+        for(int i=0;i<li.size();i++){
+            ans[i]=li.get(i);
+        }
+        return ans;
+    }
+}
