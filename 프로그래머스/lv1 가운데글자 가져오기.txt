@@ -1,0 +1,14 @@
+//lv1 가운데글자 가져오기
+class Solution {
+    public String solution(String s) {
+        int midle = s.length()/2;
+        String ans = "";
+        if(s.length() % 2 ==  0 ){
+            ans = s.substring(midle-1,midle+1);
+        }
+        else{
+            ans = s.substring(midle,midle+1);
+        }
+        return ans;
+    }
+}
