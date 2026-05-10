@@ -1,0 +1,10 @@
+//부족한 금액 계산하기
+class Solution {
+
+    public long solution(int price, int money, int count) {
+
+        long answer =(long)count*(price+price*count)/2;
+        return money-answer >=0 ? 0: answer-money;
+    }
+
+}
