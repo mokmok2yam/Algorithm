@@ -1,0 +1,27 @@
+//lv2 피로도
+class Solution {
+    //최대횟수
+    static int maxCount=0;
+    public int solution(int k, int[][] dungeons) {
+        boolean visit [] = new boolean [dungeons.length];
+        //dfs(현재피로도,던전,방문배열,현재 카운트)
+        dfs(k,dungeons,visit,0);
+        return maxCount;
+    }
+
+    public void dfs (int nowK, int[][] dungeons, boolean [] visit, int count){
+        //최대 던전 횟수 확인
+        maxCount = Math.max(maxCount,count);
+        for(int i=0;i<dungeons.length;i++){
+            // 현재피로도가 던전의 필요피로도보다 크고, 방문하지 않은 경우
+            if(nowK>=dungeons[i][0] && (visit[i]==false)){
+                //visit배열 true
+                visit[i]=true;
+                // 현재피로도-소요피로도, 던전배열,방문배열,카운트+1 값
+                dfs(nowK-dungeons[i][1],dungeons,visit,count+1);
+                //다음에도 방문해야하니 다시 false처리
+                visit[i]=false;
+            }
+        }
+    }
+}
